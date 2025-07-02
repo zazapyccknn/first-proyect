@@ -60,6 +60,25 @@ def volver_menu_principal():
 root = tk.Tk()
 root.title("BeccaTool - Herramientas")
 
+def eliminar_contrasena():
+    contrasenas = cargar_contrasenas()
+    if not contrasenas:
+        messagebox.showinfo("Eliminar contraseña", "No hay contraseñas guardadas.")
+        return
+    # Selección de nombre a eliminar
+    nombres = list(contrasenas.keys())
+    nombre = simpledialog.askstring("Eliminar contraseña", f"¿Cuál deseas eliminar?\nOpciones: {', '.join(nombres)}")
+    if not nombre:
+        return
+    if nombre not in contrasenas:
+        messagebox.showerror("Error", "No existe una contraseña con ese nombre.")
+        return
+    confirm = messagebox.askyesno("Confirmar", f"¿Seguro que deseas eliminar la contraseña '{nombre}'?")
+    if confirm:
+        del contrasenas[nombre]
+        guardar_contrasenas(contrasenas)
+        messagebox.showinfo("Eliminada", f"Contraseña '{nombre}' eliminada correctamente.")
+
 #esto es lo principal
 menu_principal = tk.Frame(root)
 label_menu = tk.Label(menu_principal, text="Selecciona una herramienta:", font=("Arial", 14))
@@ -75,6 +94,9 @@ label_contra.pack(pady=10)
 btn_generar = tk.Button(menu_contrasenas, text="Generar y guardar contraseña", width=30, command=agregar_contrasena)
 btn_generar.pack(pady=5)
 btn_mostrar = tk.Button(menu_contrasenas, text="Mostrar contraseñas guardadas", width=30, command=mostrar_contrasenas)
+#// opcion para eliminar las contraseña
+btn_delete = tk.Button(menu_contrasenas, text="Eliminar contraseña", width=30, command=eliminar_contrasena)
+btn_delete.pack(pady=5)
 btn_mostrar.pack(pady=5)
 btn_volver = tk.Button(menu_contrasenas, text="Volver", width=30, command=volver_menu_principal)
 btn_volver.pack(pady=10)
