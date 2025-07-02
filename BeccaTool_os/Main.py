@@ -4,6 +4,8 @@ import random
 import string
 import json
 import os
+import datetime
+
 
 ARCHIVO_CONTRASENAS = "contrasenas.json" #odio saber que la "ñ" no funciona :(
 
@@ -56,6 +58,12 @@ def volver_menu_principal():
     #voton para regresar
     menu_contrasenas.pack_forget()
     menu_principal.pack(pady=20)
+    
+def actualizar_fecha_hora():
+    ahora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    label_fecha_hora.config(text=ahora)
+    label_fecha_hora.after(1000, actualizar_fecha_hora)
+    
 
 root = tk.Tk()
 root.title("BeccaTool - Herramientas")
@@ -100,5 +108,9 @@ btn_delete.pack(pady=5)
 btn_mostrar.pack(pady=5)
 btn_volver = tk.Button(menu_contrasenas, text="Volver", width=30, command=volver_menu_principal)
 btn_volver.pack(pady=10)
+#Fecha y hora :v
+label_fecha_hora = tk.Label(root, font=("Arial", 10))
+label_fecha_hora.place(relx=1.0, y=0, anchor="ne")
+actualizar_fecha_hora()
 
 root.mainloop()
