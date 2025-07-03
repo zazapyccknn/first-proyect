@@ -50,12 +50,12 @@ def mostrar_contrasenas():
     texto.config(state='disabled')
 
 def mostrar_menu_contrasenas():
-    #voton para ocultar el menù :v
+    #boton para ocultar el menù :v
     menu_principal.pack_forget()
     menu_contrasenas.pack(pady=20)
 
 def volver_menu_principal():
-    #voton para regresar
+    #boton para regresar
     menu_contrasenas.pack_forget()
     menu_principal.pack(pady=20)
     
@@ -105,7 +105,9 @@ btn_mostrar = tk.Button(menu_contrasenas, text="Mostrar contraseñas guardadas",
 #// opcion para eliminar las contraseña
 btn_delete = tk.Button(menu_contrasenas, text="Eliminar contraseña", width=30, command=eliminar_contrasena)
 btn_delete.pack(pady=5)
+#mostra contras
 btn_mostrar.pack(pady=5)
+#boton de volver
 btn_volver = tk.Button(menu_contrasenas, text="Volver", width=30, command=volver_menu_principal)
 btn_volver.pack(pady=10)
 #Fecha y hora :v
@@ -113,4 +115,5 @@ label_fecha_hora = tk.Label(root, font=("Arial", 10))
 label_fecha_hora.place(relx=1.0, y=0, anchor="ne")
 actualizar_fecha_hora()
 
+#no borrar, se va todo a la shit
 root.mainloop()
